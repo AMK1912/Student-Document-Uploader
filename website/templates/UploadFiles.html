@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Upload Files{% endblock %}
+{% block content %}
+<center><br>
+    <br><br><br><br><br><br><br>
+    <div style="height:300px;width: 390px;background-color: rgba(231, 231, 231, 0.377);border-radius: 50px">
+<br>
+
+        <br>
+        <h2 style="color:darkred;font-family: sans-serif">Select file(s) to upload</h2>
+<br>
+        <br>
+        
+<form method="post" enctype="multipart/form-data">
+    <dl>
+		<p>
+			<input style="color:rgb(133, 17, 40)"type="file" name="file"  id="file" multiple="true" autocomplete="off" required>
+		</p>
+    </dl>
+    <p>
+		<input style="color:rgb(0, 0, 0)" type="submit" value="Submit">
+	</p>
+</form>
+        <br><br>
+    </div>
+</center>
+
+{% endblock %}

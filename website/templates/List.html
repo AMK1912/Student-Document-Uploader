@@ -1,0 +1,20 @@
+{% extends "base.html" %}{% block title %}List{% endblock %}{% block content %}
+<h1 align="center">Documents List</h1> 
+
+<table id="data" class="table table-striped">
+    <thead>
+      <tr>
+        <th>Document Name</th>
+        <th>Uploaded On</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for document in documents %}
+        <tr>
+          <td><a href='{{ document.Document_Uploaded }}'>{{ document.filename }}</a></td>
+          <td>{{ document.uploaded_on }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
