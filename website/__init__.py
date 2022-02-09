@@ -10,22 +10,7 @@ import traceback
 db = SQLAlchemy()
 
 def create_app():
-
-    # using the above logic I just did the following
-    #params = urllib.parse.quote_plus('DRIVER={SQL Server};SERVER=LAPTOP-O72FEI27\SQLEXPRESS;DATABASE=Students;Trusted_Connection=yes;')
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params 
-    #params = urllib.parse.quote_plus('DRIVER={SQL Server};Server=tcp:updoc.database.windows.net,1433;DATABASE=UpDocSQL;Trusted_Connection=yes;')
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params 
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://amir:amk@1912@tcp:updoc.database.windows.net:1433/UpDocSQL"
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "mssql+pyodbc://LAPTOP-O72FEI27\SQLEXPRESS/Students?driver=SQL+Server?trusted_connection=yes"
-    #app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://user:pwd@server/database?driver=SQL+Server"
-    #app.config["SQLALCHEMY_DATABASE_URI"] = "mssql+pyodbc://LAPTOP-O72FEI27\SQLEXPRESS/Students?driver=SQL+Server?trusted_connection=yes"
-    #server = 'updoc.database.windows.net'
-    #database = 'UpDocSQL'
-    #username = 'amir'
-    #password = 'amk@1912'   
-    #driver= 'ODBC Driver 17 for SQL Server'
-
+    
     # Configure Database URI: 
     params = urllib.parse.quote_plus(
         'Driver=%s;' % 'ODBC Driver 17 for SQL Server' +
@@ -58,8 +43,8 @@ def create_app():
     login_manager.login_view = 'auth.login'
     login_manager.init_app(app)
 
-
     @login_manager.user_loader
-    def load_user(Id):
-        return Student.query.get(int(Id))
+    def load_user(id):
+        return Student.query.get(int(id))
+
     return app
