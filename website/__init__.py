@@ -10,7 +10,7 @@ import traceback
 db = SQLAlchemy()
 
 def create_app():
-    try:
+
     # using the above logic I just did the following
     #params = urllib.parse.quote_plus('DRIVER={SQL Server};SERVER=LAPTOP-O72FEI27\SQLEXPRESS;DATABASE=Students;Trusted_Connection=yes;')
     #app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params 
@@ -57,8 +57,7 @@ def create_app():
         login_manager=LoginManager()
         login_manager.login_view = 'auth.login'
         login_manager.init_app(app)
-    except Exception as e:
-        print("Create App: " + e.Message)
+   
 
     @login_manager.user_loader
     def load_user(Id):
