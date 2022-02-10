@@ -33,6 +33,8 @@ pipreqs==0.4.11
 platformdirs==2.4.1
 protobuf==3.19.1
 pycparser==2.21
+pygame==2.1.2
+pyodbc==4.0.32
 python-dateutil==2.8.2
 PyYAML==6.0
 requests==2.26.0
