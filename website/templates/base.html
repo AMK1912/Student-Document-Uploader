@@ -18,19 +18,19 @@
         <title>{% block title %}Home{% endblock %}</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark  header">
             <button 
              class="navbar-toggler"
              type="button" 
              data-toggle="collapse" 
              data-target="#navbar"
             >
-               <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbar">
-                <div class="navbar-nav">
+            <div class="collapse navbar-collapse header" id="navbar">
+                <div class="navbar-nav header">
                     {% if user.is_authenticated %}
-                    <a class="nav-item nav-link" id="home" href="/">Home</a>
+                    <a class="nav-item nav-link header" id="home" href="/">Home</a>
                     <a class="nav-item nav-link" id="DocumentUploader" href="/upload">Upload</a>
                     <a class="nav-item nav-link" id="list" href="/list">List</a>
                     <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>                    
@@ -76,21 +76,14 @@
             {% block content %}
             {% endblock %}
         </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>    
-    <div style="background-color: rgb(63, 62, 62)">
-        <br>
-        <h6 style="color: grey;">About</h6>
+       
+    <div class="footer">
+        <h3>About</h3>
+        <span >Amir Mustafa Khan</span>
         <br>
         <i class="fa fa-envelope-o" aria-hidden="true"></i>
-        <span style="color: rgb(74, 141, 158);"">amirmkhan1912@gmail.com</span>
-        <br>
-        <span style="color: rgb(74, 141, 158);">Amir Mustafa Khan</span>
+        <span >amirmkhan1912@outlook.com</span>
+        
     </div>  
         <script
         src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
