@@ -22,7 +22,7 @@ blob_service_client = BlobServiceClient.from_connection_string(connect_str)
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1] in allowed_ext
+            filename.rsplit('.', 1)[1] in allowed_ext
 
 @auth.route('/login', methods=['GET','POST'])
 def login():
@@ -30,16 +30,16 @@ def login():
         email = request.form.get('email')
         password = request.form.get('password')
         
-        user = Student.query.filter_by(Email_Id=email).first()  
+        user = Student.query.filter_by(Email_Id=email, password=password).first()  
         if user:
-            if check_password_hash(user.password, password):
-                flash('Logged in successfully!', category='success')
-                login_user(user, remember=True)
-                return redirect(url_for('views.home'))
-            else:
-                flash('Incorrect Password, try again', category='error')
+            #if check_password_hash(user.password, password):
+        
+            flash('Logged in successfully!', category='success')
+            login_user(user, remember=True)
+            return redirect(url_for('views.home'))
+            
         else:
-            flash('Email does not exist.', category='error')
+            flash('Either Email does not exist or Password is not correct, Please try again', category='error')
     
     return render_template("login.html", user=current_user)
  
@@ -69,7 +69,8 @@ def sign_up():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters', category='error')
         else:      
-            new_user = Student(Email_Id=Email_Id,student_name=student_name, password=generate_password_hash(password1, method='sha256')) 
+            #new_user = Student(Email_Id=Email_Id,student_name=student_name, password=generate_password_hash(password1, method='sha256')) 
+            new_user = Student(Email_Id=Email_Id,student_name=student_name, password=password1) 
             db.session.add(new_user)
             db.session.commit()
             #login_user(new_user, remember=True)
@@ -87,12 +88,12 @@ def upload():
         if img and allowed_file(img.filename):
             filename = img.filename
             img.save(filename)
-            #blob_client = blob_service_client.get_blob_client(container = container, blob = filename)
+            blob_client = blob_service_client.get_blob_client(container = container, blob = filename)
             with open(filename, "rb") as data:
                 try:
-                    #blob_client.upload_blob(data, overwrite=True)
-                    #docurl=blob_client.url
-                    docurl="www.google.com"
+                    blob_client.upload_blob(data, overwrite=True)
+                    docurl=blob_client.url
+                    #docurl="www.google.com"
                     new_document=Documents(student_id=studentid,Document_Uploaded=docurl,filename=filename)
                     db.session.add(new_document)
                     db.session.commit()
@@ -109,5 +110,4 @@ def list():
     if user!=None:
         studentid= user.get_id()
         documents = Documents.query.filter_by(student_id=studentid)  
-        return render_template('list.html', title='Document Table',
-                           documents=documents,user=current_user)
+        return render_template('List.html', title='Document Table',documents=documents,user=current_user)
