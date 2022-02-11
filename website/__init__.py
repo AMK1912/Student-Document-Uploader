@@ -14,7 +14,7 @@ def create_app():
     # Initialize application with URI for Azure DB
     app = Flask(__name__)
     # Configure Database URI: 
-    params = urllib.parse.quote_plus('DRIVER={ODBC Driver 17 for SQL Server};SERVER=tcp:updoc.database.windows.net,1433;DATABASE=UpDocSQL;Uid=amir;Pwd=amk1912;Encrypt=yes;Trusted_Connection=no;')
+    params = urllib.parse.quote_plus('DRIVER={ODBC Driver 17 for SQL Server};SERVER=tcp:updoc.database.windows.net,1433;DATABASE=UpDocSQL;Uid=amir;Pwd=amk@1912;Encrypt=yes;Trusted_Connection=no;')
     app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc:///?odbc_connect=%s" % params 
 
     app.config['SECRET_KEY'] = 'dfvovniv bfuo3bfui3fih'
