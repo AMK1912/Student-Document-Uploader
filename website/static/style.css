@@ -1,5 +1,20 @@
 .abc {
-    color: darkgoldenrod;
+    color: rgba(247, 232, 30, 0.918);
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
+}
+
+.footer{
+    background-color:rgb(17, 40, 83);
+    position: fixed;
+    padding: 10px 10px 0px 10px;
+    bottom: 0;
+    width: 100%;
+    color:azure;
+}
+
+
+.header{
+    background-color:rgb(17, 40, 83);
+    color:azure;
 }
